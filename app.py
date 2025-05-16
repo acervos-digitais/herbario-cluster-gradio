@@ -29,14 +29,14 @@ def get_cluster_data(n_clusters):
   cluster_distances = euclidean_distances(embs, centers)
 
   i_c_d = zip(ids.tolist(), clusters.tolist(), cluster_distances.tolist())
-  return {id: {"cluster": c, "distances": [round(d,3) for d in ds]} for  id,c,ds in i_c_d}
+  return {id: {"cluster": c, "distances": [round(d,6) for d in ds]} for  id,c,ds in i_c_d}
 
 with gr.Blocks() as demo:
   gr.Interface(
     fn=get_cluster_data,
     inputs="number",
     outputs="json",
-    allow_flagging="never",
+    flagging_mode="never",
   )
 
 if __name__ == "__main__":
